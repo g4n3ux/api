@@ -4,10 +4,17 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from 'process';
 import { imports } from './graphql/imports';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver } from '@nestjs/apollo';
 
 
 @Module({
   imports: [
+    GraphQLModule.forRoot({
+      driver:ApolloDriver,
+      autoSchemaFile:true,
+    }),
+    
     ConfigModule.forRoot({
       isGlobal: true,
     }),
